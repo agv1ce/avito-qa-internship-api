@@ -87,17 +87,3 @@ allure serve allure-results
 Статус: Open
 
 Описание: В успешном ответе на создание объявления (`POST /api/1/item`) не возвращается поле `sellerID`.
-
-### 6. Структура проекта
-
-├── tests/
-│   ├── conftest.py           # Фикстуры: создание/очистка данных
-│   ├── test_item_api.py      # Тесты item-эндпоинтов
-│   ├── test_statistic_api.py # Тесты statistic-эндпоинтов
-│   └── helpers/              # Генераторы и валидаторы
-├── README.md                 # Этот файл
-├── TESTCASES.md              # Полные тест-кейсы
-├── BUGS.md                   # Баг-репорты
-├── requirements.txt          # Зависимости
-├── pytest.ini                # Конфигурация pytest
-└── pyproject.toml           # Настройки black/flake8/mypy
