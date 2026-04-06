@@ -1,7 +1,6 @@
 import pytest
 import requests
 
-
 @pytest.mark.smoke
 def test_get_statistic_success(created_item: tuple, base_url: str) -> None:
     """TC-004: Получение статистики по существующему объявлению."""
@@ -23,7 +22,6 @@ def test_get_statistic_success(created_item: tuple, base_url: str) -> None:
                 val, (int, float)
             ), f"Field {field} type error: {type(val)}"
 
-
 @pytest.mark.negative
 def test_get_statistic_nonexistent(base_url: str) -> None:
     """TC-104: Статистика по несуществующему ID → 400."""
@@ -32,7 +30,6 @@ def test_get_statistic_nonexistent(base_url: str) -> None:
         f"{base_url}/api/1/statistic/{fake_id}", headers={"Accept": "application/json"}, timeout=10
     )
     assert response.status_code == 400, f"Expected 400, got {response.status_code}"
-
 
 @pytest.mark.regression
 def test_statistic_fields_types(created_item: tuple, base_url: str) -> None:

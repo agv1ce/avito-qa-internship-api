@@ -5,11 +5,9 @@ from tests.helpers.generators import generate_valid_item_payload
 
 BASE_URL: str = "https://qa-internship.avito.com"
 
-
 @pytest.fixture(scope="session")
 def base_url() -> str:
     return BASE_URL
-
 
 @pytest.fixture(scope="function")
 def created_item(base_url: str) -> Iterator[Tuple[Dict[str, Any], Dict[str, Any], Dict[str, Any]]]:

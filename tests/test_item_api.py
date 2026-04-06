@@ -2,7 +2,6 @@ import pytest
 import requests
 from tests.helpers.generators import generate_valid_item_payload, generate_seller_id
 
-
 @pytest.mark.smoke
 def test_create_item_success(created_item: tuple) -> None:
     """TC-001: Успешное создание объявления."""
@@ -31,7 +30,6 @@ def test_create_item_success(created_item: tuple) -> None:
     assert "likes" in stats
     assert "contacts" in stats
 
-
 @pytest.mark.smoke
 def test_get_item_by_id_success(created_item: tuple, base_url: str) -> None:
     """TC-002: Получение объявления по валидному ID."""
@@ -48,7 +46,6 @@ def test_get_item_by_id_success(created_item: tuple, base_url: str) -> None:
     assert found is not None, "Created item not found in response"
     assert found.get("name") == payload["name"]
 
-
 @pytest.mark.negative
 def test_create_item_empty_body(base_url: str) -> None:
     """TC-101: Создание с пустым телом → 400."""
@@ -64,7 +61,6 @@ def test_create_item_empty_body(base_url: str) -> None:
         k in resp_json for k in ["result", "status", "message"]
     ), "Response should contain error information"
 
-
 @pytest.mark.negative
 def test_get_nonexistent_item(base_url: str) -> None:
     """TC-103: Получение несуществующего объявления → 400."""
@@ -73,7 +69,6 @@ def test_get_nonexistent_item(base_url: str) -> None:
         f"{base_url}/api/1/item/{fake_id}", headers={"Accept": "application/json"}, timeout=10
     )
     assert response.status_code == 400, f"Expected 400, got {response.status_code}"
-
 
 @pytest.mark.regression
 def test_get_items_by_seller_id(base_url: str) -> None:
@@ -109,7 +104,6 @@ def test_get_items_by_seller_id(base_url: str) -> None:
     for cid in created_ids:
         assert cid in returned_ids, f"Item {cid} not in seller list"
 
-
 @pytest.mark.negative
 def test_create_item_invalid_seller_id_type(base_url: str) -> None:
     """TC-102: sellerId как строка вместо числа → 400."""
@@ -122,7 +116,6 @@ def test_create_item_invalid_seller_id_type(base_url: str) -> None:
         timeout=10,
     )
     assert response.status_code == 400
-
 
 @pytest.mark.negative
 def test_create_item_negative_price(base_url: str) -> None:

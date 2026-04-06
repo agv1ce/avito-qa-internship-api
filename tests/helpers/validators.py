@@ -1,12 +1,10 @@
 import re
 from typing import Any, Dict, List, Tuple
 
-
 def is_iso8601(value: str) -> bool:
     """Проверяет, что строка в формате ISO 8601."""
     pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}" r"(\.\d+)?(Z|[+-]\d{2}:\d{2})?$"
     return bool(re.match(pattern, value))
-
 
 def validate_item_schema(data: Dict[str, Any]) -> Tuple[bool, List[str]]:
     """Валидирует структуру ответа с объявлением."""
